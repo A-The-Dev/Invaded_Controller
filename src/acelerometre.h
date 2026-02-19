@@ -2,37 +2,76 @@
 #include <string.h>
 #include <Arduino.h>
 
-int pin_valeur_x = 0;
-int pin_valeur_y = 0;
-int pin_valeur_z = A1;
+int pin_valeur_x = A0;
+int pin_valeur_y = A1;
+int pin_valeur_z = A2;
 
 
 
-int threshold_haut = 455; 
-int threshold_bas = 370;
+int threshold_haut_z = 420; 
+int threshold_bas_z = 370;
 
-int compteur = 0;
+int threshold_gauche_y = 350;
+int threshold_droite_y = 325;
+
+int threshold_avant_x = 360;
+int threshold_arriere_x = 315;
 
 void setup_accelerometre()
 {
     // code d'initialisation de l'accelerometre
-    //analogRead(pin_valeur_x);
-    //analogRead(pin_valeur_y);
     int ValeurZ = analogRead(pin_valeur_z);
+    int ValeurY = analogRead(pin_valeur_y);
+    //Serial.println(ValeurY);
+    int ValeurX = analogRead(pin_valeur_x);
+    //Serial.println(ValeurX);
     
     //Serial.println(ValeurZ);
 
-  if (ValeurZ > threshold_haut || ValeurZ < threshold_bas) {
-    if (compteur == 1){
-      Serial.println("Mouvement detecte");
+    //Valeur en Z
+
+  if (ValeurZ > threshold_haut_z) {
+    Serial.println("Mouvement monte detecte");
+    Serial.print("Valeur Z: ");
+    Serial.println(ValeurZ);
+    delay(200);
     }
-    if (compteur == 2) {
-                Serial.println("Mouvement detecte");
-                Serial.print("Valeur Z: ");
-                Serial.println(ValeurZ);
-                compteur = 0;
-            }
-      compteur++;
+  if (ValeurZ < threshold_bas_z) {
+    Serial.println("Mouvement descendre detecte");
+    Serial.print("Valeur Z: ");
+    Serial.println(ValeurZ);
+    delay(200);
     }
-    delay(300);
+
+      //valeur en y
+
+  if (ValeurY < threshold_droite_y) {
+    Serial.println("Mouvement droite detecte");
+    Serial.print("Valeur Y: ");
+    Serial.println(ValeurY);
+    delay(200);
+    }
+  if (ValeurY > threshold_gauche_y) {
+    Serial.println("Mouvement gauche detecte");
+    Serial.print("Valeur Y: ");
+    Serial.println(ValeurY);
+    delay(200);
+    }
+
+      //valeur en x
+
+  if (ValeurX > threshold_avant_x) {
+    Serial.println("Mouvement avant detecte");
+    Serial.print("Valeur X: ");
+    Serial.println(ValeurX);
+    delay(200);
+    }
+  if (ValeurX < threshold_arriere_x) {
+    Serial.println("Mouvement arriere detecte");
+    Serial.print("Valeur X: ");
+    Serial.println(ValeurX);
+    delay(200);
+    }
+  
+    delay(200);
 }
