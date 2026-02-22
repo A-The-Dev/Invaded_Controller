@@ -8,11 +8,11 @@ int pin_valeur_z = A2;
 
 
 
-int threshold_haut_z = 420; 
-int threshold_bas_z = 370;
+int threshold_haut_z = 440; 
+int threshold_bas_z = 300;
 
 int threshold_gauche_y = 350;
-int threshold_droite_y = 325;
+int threshold_droite_y = 310;
 
 int threshold_avant_x = 360;
 int threshold_arriere_x = 315;
@@ -31,35 +31,41 @@ void setup_accelerometre()
     //Valeur en Z
 
   if (ValeurZ > threshold_haut_z) {
-    Serial.println("Mouvement monte detecte");
-    Serial.print("Valeur Z: ");
-    Serial.println(ValeurZ);
-    delay(200);
+    //Serial.println("Mouvement monte detecte");
+    //Serial.print("Valeur Z: ");
+    //Serial.println(ValeurZ);
+    //delay(200);
+    Serial.println("ULTIUME");
     }
   if (ValeurZ < threshold_bas_z) {
-    Serial.println("Mouvement descendre detecte");
+    /*Serial.println("Mouvement descendre detecte");
     Serial.print("Valeur Z: ");
     Serial.println(ValeurZ);
     delay(200);
+    
+    */
+    Serial.println("SECRET BIEN CACHE :)");
     }
 
       //valeur en y
 
   if (ValeurY < threshold_droite_y) {
-    Serial.println("Mouvement droite detecte");
-    Serial.print("Valeur Y: ");
-    Serial.println(ValeurY);
+    //Serial.println("Mouvement droite detecte");
+    //Serial.print("Valeur Y: ");
+    //Serial.println(ValeurY);
+    Serial.println("Rotation antihoraire");
     delay(200);
     }
   if (ValeurY > threshold_gauche_y) {
-    Serial.println("Mouvement gauche detecte");
-    Serial.print("Valeur Y: ");
-    Serial.println(ValeurY);
+    //Serial.println("Mouvement gauche detecte");
+    //Serial.print("Valeur Y: ");
+    //Serial.println(ValeurY);
+    Serial.println("Rotation horaire");
     delay(200);
     }
 
       //valeur en x
-
+/*
   if (ValeurX > threshold_avant_x) {
     Serial.println("Mouvement avant detecte");
     Serial.print("Valeur X: ");
@@ -72,6 +78,6 @@ void setup_accelerometre()
     Serial.println(ValeurX);
     delay(200);
     }
-  
+  */
     delay(200);
 }
