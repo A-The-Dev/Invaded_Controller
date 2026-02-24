@@ -3,34 +3,34 @@
 #include <Arduino.h>
 #include <math.h>
 
-int pin_valeur_x = A0;
+int pin_valeur_x = A2;
 int pin_valeur_y = A1;
-int pin_valeur_z = A2;
+int pin_valeur_z = A0;
 
 
 
-int threshold_haut_z = 440; 
-int threshold_bas_z = 300;
+//int threshold_haut_z = 440; 
+//int threshold_bas_z = 300;
 
 int threshold_gauche_y = 350;
 int threshold_droite_y = 310;
 
-int threshold_avant_x = 360;
-int threshold_arriere_x = 315;
+//int threshold_avant_x = 360;
+//int threshold_arriere_x = 315;
 
-void setup_accelerometre()
+int setup_accelerometre()
 {
     // code d'initialisation de l'accelerometre
-    int ValeurZ = analogRead(pin_valeur_z);
+    //int ValeurZ = analogRead(pin_valeur_z);
     int ValeurY = analogRead(pin_valeur_y);
    
-    int ValeurX = analogRead(pin_valeur_x);
+    //int ValeurX = analogRead(pin_valeur_x);
     //Serial.println(ValeurX);
     //Serial.println(ValeurY);
-    Serial.println(ValeurZ);
+    //Serial.println(ValeurZ);
 
     //Valeur en Z
-
+/*
   if (ValeurZ > threshold_haut_z) {
     Serial.println("Mouvement monte detecte");
     Serial.print("Valeur Z: ");
@@ -43,23 +43,23 @@ void setup_accelerometre()
     Serial.print("Valeur Z: ");
     Serial.println(ValeurZ);
     
-    }
+    }*/
 
       //valeur en y
 
   if (ValeurY < threshold_droite_y) {
-    Serial.println("Mouvement droite detecte");
-    Serial.print("Valeur Y: ");
-    Serial.println(ValeurY);
-    //Serial.println("Rotation antihoraire");
-    
+    //Serial.println("Mouvement droite detecte");
+    //Serial.print("Valeur Y: ");
+    //Serial.println(ValeurY);
+    Serial.println("Rotation antihoraire");
+    return 0;
     }
   if (ValeurY > threshold_gauche_y) {
-    Serial.println("Mouvement gauche detecte");
-    Serial.print("Valeur Y: ");
-    Serial.println(ValeurY);
-    //Serial.println("Rotation horaire");
-   
+    //Serial.println("Mouvement gauche detecte");
+    //Serial.print("Valeur Y: ");
+    //Serial.println(ValeurY);
+    Serial.println("Rotation horaire");
+    return 1;
     }
 
       //valeur en x
@@ -78,6 +78,7 @@ void setup_accelerometre()
     }
   */
     delay(200);
+    return -1;
 }
 
 float module_accelerometre()

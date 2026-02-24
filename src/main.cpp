@@ -4,24 +4,28 @@
 #include "bouton.h"
 #include "incremental.h"
 #include "potentiometre.h"
+#include "joystick.h"
 
 int lastValue = 0;
 int menu = 0;
+int derniere_valeur = 4;
+
 
 void setup()
 {
   Serial.begin(9600);
   //Serial.print("Debut de l'initialisation de l'accelerometre");
   setup_encoder(2, 3);  // use interrupt pin 2 for channel A and pin 3 for channel B
+  JoyInit();
   
 }
 
 void loop()
 {
-  setup_accelerometre();
+  //setup_accelerometre();
   //setup_bouton();
   //potentiometre();
-  Serial.println(module_accelerometre());
+  //Serial.println(module_accelerometre());
  
  
   //bouton du rotary encoder
@@ -36,7 +40,7 @@ void loop()
     Serial.println("Bouton relache");
   }
   */
-  /*
+  
   int currentValue = read_encoder();
   
 
@@ -44,7 +48,7 @@ void loop()
   if (currentValue > lastValue)
   {
     menu++;
-    if (menu > 2){
+    if (menu > derniere_valeur){
       menu = 0;
     }
   
@@ -53,45 +57,40 @@ void loop()
   {
     menu--;
     if (menu < 0){
-      menu = 2;
+      menu = derniere_valeur;
     }
   }
   lastValue = currentValue;
-  Serial.println(currentValue);
-  Serial.println(lastValue);
+  //Serial.println(currentValue);
+  //Serial.println(lastValue);
+
   if (menu == 0){
-    Serial.println("ACCELEROMETRE");
+    setup_accelerometre();
+    //Serial.println("ACCELEROMETRE");
   }
-  else if (menu == 1){
-    Serial.println("BOUTON");
+  if (menu == 1){
+    module_accelerometre();
+    //Serial.println("ACCELEROMETRE");
   }
   else if (menu == 2){
-    Serial.println("LEBRON JAMES");
+    setup_bouton();
+    //Serial.println("BOUTON");
+  }
+  else if (menu == 3){
+    potentiometre();
+    //Serial.println("LEBRON JAMES");
+  }
+  else if (menu == 4){
+    //JoyPrint();
+    Serial.println("Ou est le joystick Xavier?");
   }
   
   currentValue = 0;
   lastValue = 0;
   write_encoder(0);
-  */
+  Serial.println(menu);
 
-  /*if (currentValue == lastValue){
-    Serial.println("Pas de changement");
-  }
-  else if (currentValue > lastValue)
-  {
-    Serial.println("Rotation antihoraire");
-    Serial.print("Valeur actuelle: ");
-    Serial.println(currentValue);
-    lastValue = currentValue;
-  }
-  else if (currentValue < lastValue)
-  {
-    Serial.println("Rotation horaire");
-    Serial.print("Valeur actuelle: ");
-    Serial.println(currentValue);
-    lastValue = currentValue;
-  }*/
-  delay (1000);
+  delay (200);
 }
 
 

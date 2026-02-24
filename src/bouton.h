@@ -2,9 +2,10 @@
 #include <string.h>
 #include <Arduino.h>
 
-int pin_bouton1 = 50; 
-int pin_bouton2 = 51;
-int pin_bouton3 = 52;
+int pin_bouton1 = 41; 
+int pin_bouton2 = 42;
+int pin_bouton3 = 43;
+int pin_bouton4 = 44;
 
 int setup_bouton()
 {
@@ -26,6 +27,11 @@ int setup_bouton()
         Serial.println("We fight for the gospel");
         delay(100);
         return 3;
+    }
+    if ( digitalRead(pin_bouton4) == true ) {
+        Serial.println("We honor his name");
+        delay(100);
+        return 4;
     }
 
     delay(200);
