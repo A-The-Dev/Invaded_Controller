@@ -3,6 +3,7 @@
 #include "acelerometre.h"
 #include "bouton.h"
 #include "incremental.h"
+#include "potentiometre.h"
 
 int lastValue = 0;
 int menu = 0;
@@ -17,8 +18,10 @@ void setup()
 
 void loop()
 {
-  //setup_accelerometre();
+  setup_accelerometre();
   //setup_bouton();
+  //potentiometre();
+  Serial.println(module_accelerometre());
  
  
   //bouton du rotary encoder
@@ -33,7 +36,7 @@ void loop()
     Serial.println("Bouton relache");
   }
   */
-
+  /*
   int currentValue = read_encoder();
   
 
@@ -66,8 +69,10 @@ void loop()
     Serial.println("LEBRON JAMES");
   }
   
-
-
+  currentValue = 0;
+  lastValue = 0;
+  write_encoder(0);
+  */
 
   /*if (currentValue == lastValue){
     Serial.println("Pas de changement");

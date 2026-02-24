@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <Arduino.h>
+#include <math.h>
 
 int pin_valeur_x = A0;
 int pin_valeur_y = A1;
@@ -22,46 +23,43 @@ void setup_accelerometre()
     // code d'initialisation de l'accelerometre
     int ValeurZ = analogRead(pin_valeur_z);
     int ValeurY = analogRead(pin_valeur_y);
-    //Serial.println(ValeurY);
+   
     int ValeurX = analogRead(pin_valeur_x);
     //Serial.println(ValeurX);
-    
-    //Serial.println(ValeurZ);
+    //Serial.println(ValeurY);
+    Serial.println(ValeurZ);
 
     //Valeur en Z
 
   if (ValeurZ > threshold_haut_z) {
-    //Serial.println("Mouvement monte detecte");
-    //Serial.print("Valeur Z: ");
-    //Serial.println(ValeurZ);
-    //delay(200);
-    Serial.println("ULTIUME");
-    }
-  if (ValeurZ < threshold_bas_z) {
-    /*Serial.println("Mouvement descendre detecte");
+    Serial.println("Mouvement monte detecte");
     Serial.print("Valeur Z: ");
     Serial.println(ValeurZ);
-    delay(200);
     
-    */
-    Serial.println("SECRET BIEN CACHE :)");
+    
+    }
+  if (ValeurZ < threshold_bas_z) {
+    Serial.println("Mouvement descendre detecte");
+    Serial.print("Valeur Z: ");
+    Serial.println(ValeurZ);
+    
     }
 
       //valeur en y
 
   if (ValeurY < threshold_droite_y) {
-    //Serial.println("Mouvement droite detecte");
-    //Serial.print("Valeur Y: ");
-    //Serial.println(ValeurY);
-    Serial.println("Rotation antihoraire");
-    delay(200);
+    Serial.println("Mouvement droite detecte");
+    Serial.print("Valeur Y: ");
+    Serial.println(ValeurY);
+    //Serial.println("Rotation antihoraire");
+    
     }
   if (ValeurY > threshold_gauche_y) {
-    //Serial.println("Mouvement gauche detecte");
-    //Serial.print("Valeur Y: ");
-    //Serial.println(ValeurY);
-    Serial.println("Rotation horaire");
-    delay(200);
+    Serial.println("Mouvement gauche detecte");
+    Serial.print("Valeur Y: ");
+    Serial.println(ValeurY);
+    //Serial.println("Rotation horaire");
+   
     }
 
       //valeur en x
@@ -80,4 +78,20 @@ void setup_accelerometre()
     }
   */
     delay(200);
+}
+
+float module_accelerometre()
+{
+  int ValeurZ = (analogRead(pin_valeur_z) - 423);
+  int ValeurY = (analogRead(pin_valeur_y) - 345);
+  int ValeurX = (analogRead(pin_valeur_x) - 350);
+  //Serial.println(ValeurZ);
+  
+
+  float modu = sqrt(square(ValeurX) + square(ValeurY) + square(ValeurZ));
+  if (modu > 50){
+    Serial.println("ULTIME");
+  }
+  return modu;
+
 }
