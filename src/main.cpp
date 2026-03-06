@@ -5,6 +5,7 @@
 #include "incremental.h"
 #include "potentiometre.h"
 #include "joystick.h"
+#include "LED.h"
 
 int lastValue = 0;
 int menu = 0;
@@ -15,9 +16,9 @@ void setup()
 {
   Serial.begin(9600);
   //Serial.print("Debut de l'initialisation de l'accelerometre");
-  setup_encoder(2, 3);  // use interrupt pin 2 for channel A and pin 3 for channel B
-  JoyInit();
-  
+  //setup_encoder(2, 3);  // use interrupt pin 2 for channel A and pin 3 for channel B
+  //JoyInit();
+  setup_LED();
 }
 
 void loop()
@@ -26,22 +27,28 @@ void loop()
   //setup_bouton();
   //potentiometre();
   //Serial.println(module_accelerometre());
- 
- 
-  //bouton du rotary encoder
-
-  /*
-  if (digitalRead(4) == true)
-  {
-    Serial.println("Bouton appuye");
-  }
-  else if (digitalRead(4) == false)
-  {
-    Serial.println("Bouton relache");
-  }
-  */
   
-  int currentValue = read_encoder();
+  LED_allumer(1);
+  delay(100);
+  LED_eteindre(1);
+  delay(100);
+  LED_allumer(2);
+  delay(100);
+  LED_eteindre(2);
+  delay(100);
+  LED_allumer(3);
+  delay(100);
+  LED_eteindre(3);
+  delay(100);
+  LED_allumer(4);
+  delay(100);
+  LED_eteindre(4);
+  delay(100);
+
+
+
+
+  /*int currentValue = read_encoder();
   
 
   
@@ -90,7 +97,7 @@ void loop()
   write_encoder(0);
   Serial.println(menu);
 
-  delay (200);
+  delay (200);*/
 }
 
 
