@@ -2,21 +2,28 @@
 #define JOYSTICK_H
 
 // bseoin d'inclure JoyInit dans le setup
-// dans le loop appeler JoyPrint
-
-#define pinX 8//nb 
-#define pinY 10// 
+// pour les tests appeler JoyTest()
+// dans le loop principale appeler JoyCom()
 
 
+#define pinY A4 //Axe vertical Axe y 
+#define pinX A5 //Axe horizontale Axe X
+#define deadZone 5 // valeur pour garder le 0 en place a l'entour de la valeur calibre
 
-void JoyInit();
-float cordX();
-float cordY();
+//fonction pour set up
 float JoyCalibX();
 float JoyCalibY();
+void JoyInit();
+
+//fonction pour les modification
+float cordX();
+float cordY();
+
+//fonction de test
 void JoyPrintCalib();
 void JoyPrint();
-void JoyCom();
 
+//fonction de comunication
+void JoyCom();
 
 #endif

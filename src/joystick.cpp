@@ -4,33 +4,71 @@
 #include <joystick.h>
 
 
-float maxX = 100;  // À modifier et rentrer la valeur maximal de X  
-float maxY = 200;  // À modifier et rentrer la valeur maximal de Y
+float milieuX ;  // valeur de calibration X (apres setup)
+float milieuY ;  // valeur de calibration Y (apres setup)
 
 
 void JoyInit(){
     pinMode(pinX, INPUT); //entré x
-    pinMode(pinY, INPUT); //entrée y 
+    pinMode(pinY, INPUT); //entrée y
+    
+    milieuX = JoyCalibX();
+    milieuY = JoyCalibY(); 
 }
 
+//permet de calibrer le Joystick en Y
+float JoyCalibY(){
+    float valeurJoy;
+    float add;
+    float joyCalib;
+    for(int i ; i <= 5; i++){
+        valeurJoy = analogRead(pinY);
+        add = add + valeurJoy;
+    }
+    joyCalib = add/5; 
+
+    return joyCalib;    //retourne la moyenne des reads obtenue
+}
+
+//permet de calibrer le joystick en X
+float JoyCalibX(){
+    float valeurJoy;
+    float add;
+    float joyCalib;
+    for(int i ; i <= 5; i++){
+        valeurJoy = analogRead(pinX);
+        add = add + valeurJoy;
+    }
+    joyCalib = add/5; 
+
+    return joyCalib;      //retourne la moyenne des reads obtenue     
+}
+
+// permet de lire le potentiometre X et de le tranformer sur une page de valeur entre -1 et 1 dependament de la calibration du setup
 float cordX(){
-    float joyX = analogRead(pinX);
-    return (joyX/maxX);     //change les valeur pour etre entre -1 et 1
+    float joy = analogRead(pinX);
+    if(joy < (milieuX - deadZone)){
+         return -((milieuX - deadZone - joy) / (milieuX - deadZone)); // retourne entre -1 et 0
+    }
+    else if(joy > (milieuX + deadZone)){
+        return (joy - (milieuX + deadZone)) / (1023.0 - (milieuX + deadZone)); // retourne entre 0 et 1
+    }
+    else{
+        return 0;
+    }
 }
 
 float cordY(){
-    float joyY = analogRead(pinY);
-    return (joyY/maxY);     //change les valeur pour etre entre -1 et 1
-}
-
-float JoyCalibX(){
-    float joyX = analogRead(pinX);
-    Serial.print(joyX);             // a utiliser pour le max X
-}
-
-float JoyCalibY(){
-    float joyY = analogRead(pinY);
-    Serial.print(joyY);             // a utiliser pour le max Y
+    float joy = analogRead(pinY);
+    if(joy < (milieuY - deadZone)){
+         return -((milieuY - deadZone - joy) / (milieuY - deadZone)); // retourne entre -1 et 0
+    }
+    else if(joy > (milieuY + deadZone)){
+        return (joy - (milieuY + deadZone)) / (1023.0 - (milieuY + deadZone)); // retourne entre 0 et 1
+    }
+    else{
+        return 0;
+    }
 }
 
 void JoyPrintCalib(){
