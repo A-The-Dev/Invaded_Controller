@@ -18,10 +18,13 @@ void JoyInit();
 //fonction pour les modification
 float cordX();
 float cordY();
+float angle();
+float hypotenuse();
 
 //fonction de test
-void JoyPrintCalib();
-void JoyPrint();
+void JoyPrintTestCalib();
+void JoyPrintTestModif();
+void JoyPrintTestCom();
 
 //fonction de comunication
 void JoyCom();
