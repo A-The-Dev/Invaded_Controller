@@ -87,7 +87,7 @@ float hypotenuse(){
     float x = cordX();
     float y = cordY();
 
-    return sqrt(x*x + y*y);
+    return sqrt(x*x + y*y)/sqrt(2);
 }
 
 void JoyPrintTestCalib(){
