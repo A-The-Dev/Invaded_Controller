@@ -10,13 +10,19 @@
             "includePath": [
                 "C:/Udes/S2/Projet/Invaded_Controller/include",
                 "C:/Udes/S2/Projet/Invaded_Controller/src",
+                "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit ST7735 and ST7789 Library",
+                "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit GFX Library",
+                "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit BusIO",
                 "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/ArduinoJson/src",
                 "C:/Users/emman/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/emman/.platformio/packages/framework-arduino-avr/variants/mega",
+                "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit seesaw Library",
+                "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/SD/src",
                 "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
             "browse": {
@@ -24,13 +30,19 @@
                 "path": [
                     "C:/Udes/S2/Projet/Invaded_Controller/include",
                     "C:/Udes/S2/Projet/Invaded_Controller/src",
+                    "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit ST7735 and ST7789 Library",
+                    "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit GFX Library",
+                    "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit BusIO",
                     "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/ArduinoJson/src",
                     "C:/Users/emman/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/emman/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/Adafruit seesaw Library",
+                    "C:/Udes/S2/Projet/Invaded_Controller/.pio/libdeps/megaatmega2560/SD/src",
                     "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "C:/Users/emman/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
             },

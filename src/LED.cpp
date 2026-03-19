@@ -35,7 +35,7 @@ int LED_allumer(int couleur)
     digitalWrite(blanc, true);
     return 4;
   }
-  
+  return 0;
 }
 
 int LED_eteindre(int couleur)
@@ -56,5 +56,5 @@ int LED_eteindre(int couleur)
     digitalWrite(blanc, false);
     return 4;
   }
-  
+  return 0;
 }
