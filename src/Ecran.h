@@ -36,3 +36,7 @@ void update_rotation_acc(int rotation);
 void ecran_val_pot(void);
 void update_val_pot(float valeur);
 
+void Affichage_boss(int boss);
+
+void TestDanick();
+

@@ -29,7 +29,7 @@ int setup_accelerometre()
   return -1;
 }
 
-float module_accelerometre()
+int module_accelerometre()
 {
   int ValeurZ = (analogRead(pin_valeur_z) - 423);
   int ValeurY = (analogRead(pin_valeur_y) - 345);
@@ -37,8 +37,8 @@ float module_accelerometre()
 
   float modu = sqrt(square(ValeurX) + square(ValeurY) + square(ValeurZ));
   if (modu > 50){
-    Serial.println("ULTIME");
+    return 1;
   }
-  return modu;
+  return 0;
 
 }

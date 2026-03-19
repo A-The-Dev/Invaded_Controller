@@ -7,7 +7,15 @@
 /*------------------------------ Librairies ---------------------------------*/
 #include <Arduino.h>
 #include "ArduinoJson.h"
-
+#include "bouton.h"
+#include "LED.h"
+#include "encodeur.h"
+#include "joystick.h"
+#include "Ecran.h"
+#include "7seg.h"
+#include "acelerometre.h"
+#include <Adafruit_GFX.h>
+#include <Adafruit_ST7789.h> 
 /*------------------------------ Constantes ---------------------------------*/
 
 #define BAUD 115200        // Frequence de transmission serielle
@@ -63,8 +71,32 @@ Traitement : Envoi du message
 void sendMsg() {
   StaticJsonDocument<500> doc;
   // Elements du message
-  doc["time"] = millis();
-  doc["analog"] = potValue;
+  int boutonactif = setup_bouton();
+  if (boutonactif != 0){
+    if (boutonactif == 1){
+      doc["bouton1"] = true;
+    }
+    if (boutonactif == 2){
+      doc["bouton2"] = true;
+    }
+    if (boutonactif == 3){
+      doc["bouton3"] = true;
+    }
+    if (boutonactif == 4){
+      doc["bouton4"] = true;
+    }
+  }
+  if (calculzoom() != 100){
+    doc["zoom"] = calculzoom();
+  }
+  doc["direction"] = angle();
+  doc["vitesse"] = hypotenuse();
+  if (module_accelerometre() == 1){
+    doc["accel"] = true;
+  }
+  
+  //doc["time"] = millis();
+  //doc["analog"] = potValue;
 
   // Serialisation
   serializeJson(doc, Serial);
@@ -101,5 +133,16 @@ void readMsg(){
   if (!parse_msg.isNull()) {
     // mettre la led a la valeur doc["led"]
     digitalWrite(pinLED,doc["led"].as<bool>());
+  }
+  parse_msg = doc["ecran"];
+  if (!parse_msg.isNull()) {
+    // afficher doc["ecran"] sur l'ecran (nom boss + contour rouge)
+    int boss = doc["ecran"];
+    Affichage_boss(boss);
+  }
+  parse_msg = doc["niveau"];
+  if (!parse_msg.isNull()) {
+    Affichage7Seg(2, parse_msg.as<int>());
+    // afficher doc["7seg"] sur le 7seg
   }
 }

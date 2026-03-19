@@ -6,6 +6,7 @@
 #include "potentiometre.h"
 #include "joystick.h"
 #include "LED.h"
+#include "Ecran.h"
 
 int lastValue = 0;
 int menu = 0;
@@ -15,10 +16,13 @@ int derniere_valeur = 4;
 void setup()
 {
   Serial.begin(9600);
+  init_Ecran();
   //Serial.print("Debut de l'initialisation de l'accelerometre");
   //setup_encoder(2, 3);  // use interrupt pin 2 for channel A and pin 3 for channel B
   //JoyInit();
-  setup_LED();
+  //setup_LED();
+  //Affichage_boss(2);
+  TestDanick();
 }
 
 void loop()
@@ -27,7 +31,7 @@ void loop()
   //setup_bouton();
   //potentiometre();
   //Serial.println(module_accelerometre());
-  
+  /*
   LED_allumer(1);
   delay(100);
   LED_eteindre(1);
@@ -44,9 +48,7 @@ void loop()
   delay(100);
   LED_eteindre(4);
   delay(100);
-
-
-
+  */
 
   /*int currentValue = read_encoder();
   
