@@ -2,62 +2,31 @@
 #define JOYSTICK_H
 
 // bseoin d'inclure JoyInit dans le setup
-// dans le loop appeler JoyPrint
-
-#include <Arduino.h>
-#include <stdbool.h>
-
-#define pinX 8//nb 
-#define pinY 10//nb
-
-float maxX = 100;  // À modifier et rentrer la valeur maximal de X  
-float maxY = 200;  // À modifier et rentrer la valeur maximal de Y
+// pour les tests appeler JoyTest()
+// dans le loop principale appeler JoyCom()
 
 
-void JoyInit(){
-    pinMode(pinX, INPUT); //entré x
-    pinMode(pinY, INPUT); //entrée y 
-}
+#define pinY A4 //Axe vertical Axe y 
+#define pinX A5 //Axe horizontale Axe X
+#define deadZone 5 // valeur pour garder le 0 en place a l'entour de la valeur calibre
 
-float cordX(){
-    float joyX = analogRead(pinX);
-    return (joyX/maxX);     //change les valeur pour etre entre -1 et 1
-}
+//fonction pour set up
+float JoyCalibX();
+float JoyCalibY();
+void JoyInit();
 
-float cordY(){
-    float joyY = analogRead(pinY);
-    return (joyY/maxY);     //change les valeur pour etre entre -1 et 1
-}
+//fonction pour les modification
+float cordX();
+float cordY();
+float angle();
+float hypotenuse();
 
-float JoyCalibX(){
-    float joyX = analogRead(pinX);
-    Serial.print(joyX);             // a utiliser pour le max X
-}
+//fonction de test
+void JoyPrintTestCalib();
+void JoyPrintTestModif();
+void JoyPrintTestCom();
 
-float JoyCalibY(){
-    float joyY = analogRead(pinY);
-    Serial.print(joyY);             // a utiliser pour le max Y
-}
-
-
-void JoyPrintCalib(){
-    Serial.print("X Calib");
-    Serial.print(JoyCalibX());    //print les valeur entre -1 et 1 de X
-    Serial.print("Y Calib");
-    Serial.print(JoyCalibY());    //print les valeur entre -1 et 1 de Y
-
-}
-
-void JoyPrint(){
-    Serial.print("X");
-    Serial.print(JoyCalibX());
-    Serial.print("y");
-    Serial.print(JoyCalibX());
-}
-
-void JoyCom(){
-// je ne sais pas encore comment faire la comunication encore
-}
-
+//fonction de comunication
+void JoyCom();
 
 #endif

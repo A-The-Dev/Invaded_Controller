@@ -50,6 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+.pio/build
 
 # debug information files
 *.dwo
+idedata.json
+c_cpp_properties.json
+launch.json
