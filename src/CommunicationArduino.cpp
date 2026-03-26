@@ -27,9 +27,8 @@ volatile bool shouldRead_ = false;  // Drapeau prêt à lire un message
 
 int ledState = 0;
 int potValue = 0;
-
-int pinLED = 7;
-int pinPOT = A0;
+int pinLED = 32;
+int flag_boss = 0;
 
 
 /*------------------------- Prototypes de fonctions -------------------------*/
@@ -70,40 +69,86 @@ Traitement : Envoi du message
 -----------------------------------------------------------------------------*/
 void sendMsg() {
   StaticJsonDocument<500> doc;
+  
+  int boutonactif = setup_bouton();
+  
+  doc["bouton1"] = (boutonactif == 1);
+  doc["bouton2"] = (boutonactif == 2);
+  doc["bouton3"] = (boutonactif == 3);
+  doc["bouton4"] = (boutonactif == 4);
+  //doc["zoom"] = calculzoom();
+  doc["accel"] = (module_accelerometre() == 1);
+  doc["direction"] = cordX();
+  doc["vitesse"] = cordY();
+
+  // Envoie systématique (ou conditionnel selon ton besoin)
+  serializeJson(doc, Serial);
+  Serial.println();
+  // delais de 10 ms
+
+  /*
   // Elements du message
   int boutonactif = setup_bouton();
+  doc["bouton1"] = false;
+  doc["bouton2"] = false;
+  doc["bouton3"] = false;
+  doc["bouton4"] = false;
+  doc["zoom"] = 100;
+  doc["accel"] = false;
+  doc["direction"] = 0;
+  doc["vitesse"] = 0;
+  
+  //Serial.println(boutonactif);
   if (boutonactif != 0){
     if (boutonactif == 1){
       doc["bouton1"] = true;
+      //Serial.println("Bouton 1 actif");
+      shouldSend_ = true;
+      //Serial.println(doc["bouton1"].as<bool>());
     }
-    if (boutonactif == 2){
+    else if (boutonactif == 2){
       doc["bouton2"] = true;
+      //Serial.println("Bouton 2 actif");
+      shouldSend_ = true;
     }
-    if (boutonactif == 3){
+    else if (boutonactif == 3){
       doc["bouton3"] = true;
+      //Serial.println("Bouton 2 actif");
+      shouldSend_ = true;
     }
-    if (boutonactif == 4){
+    else if (boutonactif == 4){
       doc["bouton4"] = true;
+      shouldSend_ = true;
+
     }
   }
   if (calculzoom() != 100){
-    doc["zoom"] = calculzoom();
+    //doc["zoom"] = calculzoom();
   }
-  doc["direction"] = angle();
-  doc["vitesse"] = hypotenuse();
+  //float AN = angle();
+  //Serial.println(AN);
+
+ //doc["direction"] = angle();
+ // doc["vitesse"] = hypotenuse();
   if (module_accelerometre() == 1){
     doc["accel"] = true;
+    //Serial.println("accel actif");
+    shouldSend_ = true;
   }
   
   //doc["time"] = millis();
   //doc["analog"] = potValue;
 
   // Serialisation
-  serializeJson(doc, Serial);
-
+  if (shouldSend_) {
+    serializeJson(doc, Serial);
   // Envoie
-  Serial.println();
-  shouldSend_ = false;
+    Serial.println();
+    shouldSend_ = false;
+  
+  }
+  */
+ 
 }
 
 /*---------------------------Definition de fonctions ------------------------
@@ -118,31 +163,41 @@ void readMsg(){
   JsonVariant parse_msg;
 
   // Lecture sur le port Seriel
-  DeserializationError error = deserializeJson(doc, Serial);
+  deserializeJson(doc, Serial);
   shouldRead_ = false;
 
   // Si erreur dans le message
+  /*
   if (error) {
     Serial.print("deserialize() failed: ");
     Serial.println(error.c_str());
     return;
   }
-  
+  */
   // Analyse des éléments du message message
-  parse_msg = doc["led"];
+  parse_msg = doc["delB"];
   if (!parse_msg.isNull()) {
-    // mettre la led a la valeur doc["led"]
-    digitalWrite(pinLED,doc["led"].as<bool>());
+ 
+   // mettre la led a la valeur doc["led"]
+    digitalWrite(pinLED,doc["delB"].as<bool>());
   }
+  /*
   parse_msg = doc["ecran"];
   if (!parse_msg.isNull()) {
     // afficher doc["ecran"] sur l'ecran (nom boss + contour rouge)
     int boss = doc["ecran"];
-    Affichage_boss(boss);
+    if (flag_boss != boss){
+      flag_boss = boss;
+      Affichage_boss(boss);
+    }
+    
   }
+*/
   parse_msg = doc["niveau"];
   if (!parse_msg.isNull()) {
-    Affichage7Seg(2, parse_msg.as<int>());
+    AfficherUnDigit(2, parse_msg.as<int>());
+    //Affichage7Seg(2, parse_msg.as<int>());
     // afficher doc["7seg"] sur le 7seg
   }
+    //AfficherUnDigit(2, 2);
 }

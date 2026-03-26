@@ -3,36 +3,38 @@
 #include <Arduino.h>
 #include "bouton.h"
 
-int pin_bouton1 = 41; 
-int pin_bouton2 = 42;
-int pin_bouton3 = 43;
-int pin_bouton4 = 44;
+int pin_bouton1 = 22; 
+int pin_bouton2 = 24;
+int pin_bouton3 = 26;
+int pin_bouton4 = 28;
+void setup_setup_bouton()
+{
+  pinMode(pin_bouton1, INPUT_PULLUP);
+  pinMode(pin_bouton2, INPUT_PULLUP);
+  pinMode(pin_bouton3, INPUT_PULLUP);
+  pinMode(pin_bouton4, INPUT_PULLUP);
+}
 
 int setup_bouton()
 {
   
-    if ( digitalRead(pin_bouton1) == true ) {
-        Serial.println("We are Charly Kirk");
-        delay(100);
+    if ( digitalRead(pin_bouton1) == false ) {
+        //Serial.println("We are Charly Kirk");
         return 1;
     }
-    if ( digitalRead(pin_bouton2) == true ) {
-        Serial.println("We carry the flame");
-        delay(100);
+    if ( digitalRead(pin_bouton2) == false ) {
+        //Serial.println("We carry the flame");
         return 2;
     }
-    if ( digitalRead(pin_bouton3) == true ) {
-        Serial.println("We fight for the gospel");
-        delay(100);
+    if ( digitalRead(pin_bouton3) == false ) {
+        //Serial.println("We fight for the gospel");
         return 3;
     }
-    if ( digitalRead(pin_bouton4) == true ) {
-        Serial.println("We honor his name");
-        delay(100);
+    if ( digitalRead(pin_bouton4) == false ) {
+        //Serial.println("We honor his name");
         return 4;
     }
 
-    delay(200);
     return 0;
 
 }

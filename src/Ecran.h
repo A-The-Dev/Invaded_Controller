@@ -1,3 +1,5 @@
+#ifndef ECRAN_H
+#define ECRAN_H
 #define Pin_Pot A4
 
 #define BLACK      0x0000
@@ -5,12 +7,11 @@
 
 #define BCKG_Color 0xe193f2
 
+
 #define BCKG_Bouton  0xb4ffdf
 #define BCKG_Mod_Acc 0xf8ff00
 #define BCKG_Rot_Acc 0xffbd00
 #define BCKG_Val_Pot 0x8e4bc4
-
-
 
 enum Ecran{
 
@@ -39,4 +40,4 @@ void update_val_pot(float valeur);
 void Affichage_boss(int boss);
 
 void TestDanick();
-
+#endif

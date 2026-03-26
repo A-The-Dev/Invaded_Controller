@@ -10,7 +10,7 @@ void init_Ecran(void)
 {
   tft.init(240, 320);           // Init ST7789 320x240
 
-  tft.setRotation(1);           //choisir orientation horizontale + PIN à gauche
+  tft.setRotation(3);           //choisir orientation horizontale + PIN à gauche
   //tft.fillScreen(BCKG_Color);   //Mettre couleur en background
   tft.setTextSize(3);
   tft.setTextColor(BLACK);     //Mettre couleur du texte en noir
@@ -246,25 +246,27 @@ void init_Ecran(void)
 }*/
 
 void Affichage_boss(int boss){
-  tft.fillScreen(0X000000);
-  if (boss == 0){
+  //tft.fillScreen(0X000000);
+  if (boss == 1){
     tft.setCursor(100, 110);          //Ligne 1
     tft.fillScreen(0X000000);   //Mettre couleur en background
   }
   else {
-    tft.fillRect(0, 0, 320, 240, 0XF800);
 
-    if (boss == 1){
+    if (boss == 2){
+    tft.fillRect(0, 0, 320, 240, 0XF800);
     tft.setTextColor(0Xffffff);
     tft.setCursor(50, 110);
     tft.print("THE PRESIDENT");
     }
-    else if (boss == 2){
+    else if (boss == 3){
+    tft.fillRect(0, 0, 320, 240, 0XF800);
     tft.setTextColor(0Xffffff);
     tft.setCursor(50, 110);
     tft.print("WHITE DRAGON");
     }
-    else if (boss == 3){
+    else if (boss == 4){
+    tft.fillRect(0, 0, 320, 240, 0XF800);
     tft.setTextColor(0Xffffff);
     tft.setCursor(50, 110);
     tft.print("DEATH STAR");

@@ -9,8 +9,8 @@
 #define Pin_B   47
 #define Pin_C   45  
 #define Pin_D   43
-#define Pin_E   39  //
-#define Pin_F   41  //
+#define Pin_E   41  //
+#define Pin_F   39  //
 #define Pin_G   37  
 
 void init_Timer5(void);
