@@ -14,11 +14,14 @@ int lastValue = 0;
 int menu = 0;
 int derniere_valeur = 4;
 int pinledR = 34;
+int pinEnvoieArduino1 = 26;
+int pinEnvoieArduino2 = 28;
+int boss =0;
 void setup()
 {
   CommunicationArduino_setup();
   //Serial.begin(115200);
-  init_Ecran();
+  //init_Ecran();
   setup_setup_bouton();
   init_7seg();
   //init_Timer5();
@@ -30,19 +33,36 @@ void setup()
   ///TestDanick();
   pinMode(pinledR, OUTPUT);
   digitalWrite(pinledR, true);
+  pinMode(pinEnvoieArduino1, OUTPUT);
+  pinMode(pinEnvoieArduino2, OUTPUT);
+
 }
 
 void loop()
 {
-  //Affichage_boss(1);
   sendMsg();
-  if (Serial.available()) {
-  readMsg();
-}
-  //if (Serial.available() > 0) {
-   // readMsg();
-  //}
+  if (Serial.available() > 0) {
+    boss =readMsg();
+  }
   
+  if (boss == 1){
+    digitalWrite(pinEnvoieArduino1, false);
+    digitalWrite(pinEnvoieArduino2, false);
+  }
+  else if (boss == 2){
+    digitalWrite(pinEnvoieArduino1, true);
+    digitalWrite(pinEnvoieArduino2, false);
+  }
+  else if (boss == 3){
+    digitalWrite(pinEnvoieArduino1, false);
+    digitalWrite(pinEnvoieArduino2, true);
+  }
+  else if (boss == 4){
+    digitalWrite(pinEnvoieArduino1, true);
+    digitalWrite(pinEnvoieArduino2, true);
+  } 
+  
+  //Serial.println(1);
 }
 
 

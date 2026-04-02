@@ -157,7 +157,7 @@ Entrée : Aucun
 Sortie : Aucun
 Traitement : Réception du message
 -----------------------------------------------------------------------------*/
-void readMsg(){
+int readMsg(){
   // Lecture du message Json
   StaticJsonDocument<500> doc;
   JsonVariant parse_msg;
@@ -181,18 +181,23 @@ void readMsg(){
    // mettre la led a la valeur doc["led"]
     digitalWrite(pinLED,doc["delB"].as<bool>());
   }
-  /*
+  
   parse_msg = doc["ecran"];
+
+  int boss = 0;
   if (!parse_msg.isNull()) {
     // afficher doc["ecran"] sur l'ecran (nom boss + contour rouge)
-    int boss = doc["ecran"];
+    boss = doc["ecran"];
+  }
+  
+  /*
     if (flag_boss != boss){
       flag_boss = boss;
-      Affichage_boss(boss);
-    }
+    
     
   }
-*/
+      */
+
   parse_msg = doc["niveau"];
   if (!parse_msg.isNull()) {
     AfficherUnDigit(2, parse_msg.as<int>());
@@ -200,4 +205,5 @@ void readMsg(){
     // afficher doc["7seg"] sur le 7seg
   }
     //AfficherUnDigit(2, 2);
+  return boss;
 }
