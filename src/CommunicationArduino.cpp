@@ -88,56 +88,9 @@ void sendMsg() {
 
   /*
   // Elements du message
-  int boutonactif = setup_bouton();
-  doc["bouton1"] = false;
-  doc["bouton2"] = false;
-  doc["bouton3"] = false;
-  doc["bouton4"] = false;
-  doc["zoom"] = 100;
-  doc["accel"] = false;
-  doc["direction"] = 0;
-  doc["vitesse"] = 0;
   
-  //Serial.println(boutonactif);
-  if (boutonactif != 0){
-    if (boutonactif == 1){
-      doc["bouton1"] = true;
-      //Serial.println("Bouton 1 actif");
-      shouldSend_ = true;
-      //Serial.println(doc["bouton1"].as<bool>());
-    }
-    else if (boutonactif == 2){
-      doc["bouton2"] = true;
-      //Serial.println("Bouton 2 actif");
-      shouldSend_ = true;
-    }
-    else if (boutonactif == 3){
-      doc["bouton3"] = true;
-      //Serial.println("Bouton 2 actif");
-      shouldSend_ = true;
-    }
-    else if (boutonactif == 4){
-      doc["bouton4"] = true;
-      shouldSend_ = true;
-
-    }
-  }
-  if (calculzoom() != 100){
-    //doc["zoom"] = calculzoom();
-  }
-  //float AN = angle();
-  //Serial.println(AN);
-
- //doc["direction"] = angle();
- // doc["vitesse"] = hypotenuse();
-  if (module_accelerometre() == 1){
-    doc["accel"] = true;
-    //Serial.println("accel actif");
-    shouldSend_ = true;
-  }
-  
-  //doc["time"] = millis();
-  //doc["analog"] = potValue;
+  doc["time"] = millis();
+  doc["analog"] = potValue;
 
   // Serialisation
   if (shouldSend_) {
