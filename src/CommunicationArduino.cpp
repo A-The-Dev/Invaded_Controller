@@ -30,6 +30,8 @@ int potValue = 0;
 int pinLED = 32;
 int flag_boss = 0;
 
+int digit7seg = 3;
+
 
 /*------------------------- Prototypes de fonctions -------------------------*/
 
@@ -134,10 +136,9 @@ int readMsg(){
    // mettre la led a la valeur doc["led"]
     digitalWrite(pinLED,doc["delB"].as<bool>());
   }
-  
+  int boss = 0;
   parse_msg = doc["ecran"];
 
-  int boss = 0;
   if (!parse_msg.isNull()) {
     // afficher doc["ecran"] sur l'ecran (nom boss + contour rouge)
     boss = doc["ecran"];
@@ -153,10 +154,23 @@ int readMsg(){
 
   parse_msg = doc["niveau"];
   if (!parse_msg.isNull()) {
-    AfficherUnDigit(2, parse_msg.as<int>());
-    //Affichage7Seg(2, parse_msg.as<int>());
+    Affichage7Seg(2, parse_msg.as<int>());
+    //AfficherUnDigit(3, parse_msg.as<int>());
     // afficher doc["7seg"] sur le 7seg
   }
     //AfficherUnDigit(2, 2);
   return boss;
+}
+
+ISR(TIMER5_COMPA_vect){//timer5 interrupt 1kHz
+
+digit7seg++; // Toggle the digit selection flag
+if(digit7seg >4){
+  digit7seg = 3;
+}
+}
+
+
+void compteurmuons(){
+  
 }

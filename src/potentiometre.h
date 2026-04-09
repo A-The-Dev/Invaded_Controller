@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <string.h>
 #include <Arduino.h>
 
@@ -11,3 +11,4 @@ float potentiometre()
     Serial.println(Valeur_pot, 3); //on affiche valeur pot en k genre 1.2k
     return Valeur_pot;
 }
+*/
