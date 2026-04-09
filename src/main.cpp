@@ -9,6 +9,7 @@
 #include "Ecran.h"
 #include "CommunicationArduino.h"
 #include "7seg.h"
+#include "compteurmuons.h"
 
 int lastValue = 0;
 int menu = 0;
@@ -37,11 +38,13 @@ void setup()
   digitalWrite(pinledR, true);
   pinMode(pinEnvoieArduino1, OUTPUT);
   pinMode(pinEnvoieArduino2, OUTPUT);
+  setupmuons();
 
 }
 
 void loop()
 {
+  
   sendMsg();
   if (Serial.available() > 0) {
     boss =readMsg();
@@ -63,7 +66,6 @@ void loop()
     digitalWrite(pinEnvoieArduino1, true);
     digitalWrite(pinEnvoieArduino2, true);
   } 
-  
   //Serial.println(1);
 }
 

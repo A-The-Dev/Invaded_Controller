@@ -22,6 +22,18 @@
 			],
 			"group": "build",
 			"detail": "compiler: C:/Users/danga/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe"
+		},
+		{
+			"type": "PlatformIO",
+			"task": "Upload and Monitor",
+			"problemMatcher": [
+				"$platformio"
+			],
+			"label": "PlatformIO: Upload and Monitor",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
 		}
 	]
 }

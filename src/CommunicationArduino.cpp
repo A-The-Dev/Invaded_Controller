@@ -16,10 +16,10 @@
 #include "acelerometre.h"
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7789.h> 
+#include "compteurmuons.h"
 /*------------------------------ Constantes ---------------------------------*/
 
 #define BAUD 115200        // Frequence de transmission serielle
-
 /*---------------------------- Variables globales ---------------------------*/
 
 volatile bool shouldSend_ = false;  // Drapeau prêt à envoyer un message
@@ -29,7 +29,6 @@ int ledState = 0;
 int potValue = 0;
 int pinLED = 32;
 int flag_boss = 0;
-
 int digit7seg = 3;
 
 
@@ -82,6 +81,7 @@ void sendMsg() {
   doc["accel"] = (module_accelerometre() == 1);
   doc["direction"] = cordX();
   doc["vitesse"] = cordY();
+  doc["compteur"] = detection_muons();
 
   // Envoie systématique (ou conditionnel selon ton besoin)
   serializeJson(doc, Serial);
@@ -170,7 +170,9 @@ if(digit7seg >4){
 }
 }
 
-
+/*
 void compteurmuons(){
-  
+  if (valdetecte<treshold)
+
 }
+*/
