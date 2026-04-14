@@ -10,7 +10,8 @@
 #include "CommunicationArduino.h"
 #include "7seg.h"
 #include "compteurmuons.h"
-
+#include "encodeur.h"
+#include "test.h"
 int lastValue = 0;
 int menu = 0;
 int derniere_valeur = 4;
@@ -29,7 +30,7 @@ void setup()
   init_7seg();
   init_Timer5();
   //Serial.print("Debut de l'initialisation de l'accelerometre");
-  //setup_encoder(2, 3);  // use interrupt pin 2 for channel A and pin 3 for channel B
+  setup_encoder(2, 3);  // use interrupt pin 2 for channel A and pin 3 for channel B
   JoyInit();
   //setup_LED();
   //Affichage_boss(2);
@@ -39,6 +40,7 @@ void setup()
   pinMode(pinEnvoieArduino1, OUTPUT);
   pinMode(pinEnvoieArduino2, OUTPUT);
   setupmuons();
+  write_encoder(10); // Réinitialise la valeur de l'encodeur à 0
 
 }
 
@@ -67,6 +69,8 @@ void loop()
     digitalWrite(pinEnvoieArduino2, true);
   } 
   //Serial.println(1);
+  
+
 }
 
 

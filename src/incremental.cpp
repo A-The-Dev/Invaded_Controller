@@ -37,7 +37,22 @@ void encode()
 {
   // state of Pin B at falling edge of Pin A tells us the direction of rotation
   bool pinBState = digitalRead(rotaryPinB);
-  rotaryValue +=  (pinBState) ? -1 : 1;
+  bool pinAState = digitalRead(rotaryPinA);
+  //rotaryValue +=  (pinBState) ? 1 : -1;
+  if (pinBState == false){
+    rotaryValue++;
+  }
+  if (pinAState == false){
+    rotaryValue--;
+  }
+  if (rotaryValue < 0){
+    rotaryValue = 0; // Limite la valeur de l'encodeur à 0 pour éviter un zoom négatif
+  }
+  if (rotaryValue > 20){
+    rotaryValue = 20; // Limite la valeur de l'encodeur à 20 pour éviter un zoom excessif
+  }
+  //Serial.println(digitalRead(rotaryPinA));
+  
 }
 
 // *********************************************************************
@@ -53,8 +68,8 @@ int setup_encoder(int intPinA, int PinB)
   {
     rotaryPinA = intPinA;
     rotaryPinB = PinB;
-    pinMode(intPinA, INPUT);
-    pinMode(PinB, INPUT);
+    pinMode(intPinA, INPUT_PULLUP);
+    pinMode(PinB, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(intPinA), encode, FALLING);
     return 0;   // setup is done
   }
@@ -66,6 +81,7 @@ int setup_encoder(int intPinA, int PinB)
 // *********************************************************************
 int read_encoder()
 {
+  Serial.println(rotaryValue);
   return rotaryValue;
 }
 

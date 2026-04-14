@@ -17,9 +17,10 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_ST7789.h> 
 #include "compteurmuons.h"
+#include "incremental.h"
 /*------------------------------ Constantes ---------------------------------*/
 
-#define BAUD 115200        // Frequence de transmission serielle
+#define BAUD 9600//115200        // Frequence de transmission serielle
 /*---------------------------- Variables globales ---------------------------*/
 
 volatile bool shouldSend_ = false;  // Drapeau prêt à envoyer un message
@@ -72,7 +73,7 @@ void sendMsg() {
   StaticJsonDocument<500> doc;
   
   int boutonactif = setup_bouton();
-  
+  encode();
   doc["bouton1"] = (boutonactif == 1);
   doc["bouton2"] = (boutonactif == 2);
   doc["bouton3"] = (boutonactif == 3);
@@ -82,6 +83,7 @@ void sendMsg() {
   doc["direction"] = cordX();
   doc["vitesse"] = cordY();
   doc["compteur"] = detection_muons();
+  doc["son"] = read_encoder()*5;
 
   // Envoie systématique (ou conditionnel selon ton besoin)
   serializeJson(doc, Serial);

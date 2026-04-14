@@ -1,3 +1,4 @@
+/*
 #include "bouton.h"
 #include "7seg.h"
 #include "Ecran.h"
@@ -7,7 +8,9 @@
 #include "joystick.h"
 
 void testAffichage7Seg(){
+    
     AfficherUnDigit(1, 322);
+    
 }
 
 void testAffichagetft(){
@@ -15,8 +18,8 @@ void testAffichagetft(){
 }
 
 void testencodeur(){
-    calculzoom(); 
-    printzoom();
+    calculson(); 
+    printson();
 }
 
 void testaccelerometre(){
@@ -36,3 +39,4 @@ void testjoystick(){
     JoyPrintTestModif();
 }
 
+*/
