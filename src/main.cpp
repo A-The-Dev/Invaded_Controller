@@ -18,7 +18,8 @@ int derniere_valeur = 4;
 int pinledR = 34;
 int pinEnvoieArduino1 = 36;
 int pinEnvoieArduino2 = 38;
-int boss =0;
+int boss = 0;
+
 
 
 void setup()
@@ -29,7 +30,6 @@ void setup()
   setup_setup_bouton();
   init_7seg();
   init_Timer5();
-  //Serial.print("Debut de l'initialisation de l'accelerometre");
   setup_encoder(2, 3);  // use interrupt pin 2 for channel A and pin 3 for channel B
   JoyInit();
   //setup_LED();
@@ -49,7 +49,7 @@ void loop()
   
   sendMsg();
   if (Serial.available() > 0) {
-    boss =readMsg();
+    boss = readMsg();
   }
   
   if (boss == 0){
@@ -68,8 +68,9 @@ void loop()
     digitalWrite(pinEnvoieArduino1, true);
     digitalWrite(pinEnvoieArduino2, true);
   } 
+
+  detection_muons_test();
   //Serial.println(1);
-  
 
 }
 

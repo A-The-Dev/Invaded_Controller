@@ -14,8 +14,8 @@ void init_Timer5(void)
 
     // Set compare match register for 1Hz frequency:
     // Formula: OCRnA = [ (CPU_freq) / (prescaler * desired_frequency) ] - 1
-    // For 1Hz with 1024 prescaler: OCR5A = [16,000,000 / (1024 * 1)] - 1 = 15624
-    OCR5A = 15624;
+    // For 1kHz with 1024 prescaler: OCR5A = [16,000,000 / (1024 * 1000)] - 1 = 16
+    OCR5A = 16;
 
     // Turn on CTC mode (Clear Timer on Compare Match)
     TCCR5B |= (1 << WGM42);

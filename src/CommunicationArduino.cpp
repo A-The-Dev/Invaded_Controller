@@ -20,7 +20,7 @@
 #include "incremental.h"
 /*------------------------------ Constantes ---------------------------------*/
 
-#define BAUD 9600//115200        // Frequence de transmission serielle
+#define BAUD 115200        // Frequence de transmission serielle
 /*---------------------------- Variables globales ---------------------------*/
 
 volatile bool shouldSend_ = false;  // Drapeau prêt à envoyer un message
@@ -30,7 +30,7 @@ int ledState = 0;
 int potValue = 0;
 int pinLED = 32;
 int flag_boss = 0;
-int digit7seg = 3;
+int digit7seg = 1;
 
 
 /*------------------------- Prototypes de fonctions -------------------------*/
@@ -156,11 +156,9 @@ int readMsg(){
 
   parse_msg = doc["niveau"];
   if (!parse_msg.isNull()) {
-    Affichage7Seg(2, parse_msg.as<int>());
-    //AfficherUnDigit(3, parse_msg.as<int>());
+    Affichage7Seg(digit7seg, parse_msg.as<int>());
     // afficher doc["7seg"] sur le 7seg
   }
-    //AfficherUnDigit(2, 2);
   return boss;
 }
 
@@ -168,7 +166,7 @@ ISR(TIMER5_COMPA_vect){//timer5 interrupt 1kHz
 
 digit7seg++; // Toggle the digit selection flag
 if(digit7seg >4){
-  digit7seg = 3;
+  digit7seg = 1;
 }
 }
 

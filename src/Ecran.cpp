@@ -257,7 +257,7 @@ void Affichage_boss(int boss){
     tft.fillRect(0, 0, 320, 240, 0XF800);
     tft.setTextColor(0Xffffff);
     tft.setCursor(50, 110);
-    tft.print("THE PRESIDENT");
+    tft.print("MR. PRESIDENT");
     }
     else if (boss == 3){
     tft.fillRect(0, 0, 320, 240, 0XF800);
